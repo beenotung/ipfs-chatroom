@@ -39,13 +39,24 @@ let room: string;
     if (location.protocol !== "https:") {
         location.protocol = "https:";
     }
+    let roomElm = document.getElementById("room") as HTMLInputElement;
+    let goElm = document.getElementById("go") as HTMLButtonElement;
+    let toRoom = name => {
+        let xs = searches
+            .filter(x => x[0] != 'room');
+        xs.push(["room", name]);
+        location.search = '?' + xs.map(xs => xs[0] + '=' + xs[1]).join('&');
+    };
     let x = searches.filter(xs => xs[0] == 'room');
     if (x.length == 0) {
         log('assign to a random room');
-        searches.push(['room', 'default']);
-        location.search = '?' + searches.map(xs => xs[0] + '=' + xs[1]).join('&');
+        toRoom("public");
     } else {
         room = x[0][1];
+        roomElm.value = room;
+    }
+    goElm.onclick = e => {
+        toRoom(roomElm.value);
     }
 })();
 
@@ -65,8 +76,11 @@ ipfs.once("ready", () => ipfs.id((err, info) => {
         throw err;
     }
     log("IPFS node ready with address", info.id);
+    log("waiting Yjs instance");
     Y({
-        db: {name: "indexeddb"}
+        db: {
+            name: "memory"
+        }
         , connector: {
             name: "ipfs"
             , room: repo()
@@ -80,7 +94,10 @@ ipfs.once("ready", () => ipfs.id((err, info) => {
     }).then((y) => {
         log("Yjs instance ready");
         window['y'] = y;
-        textarea.value = "";
-        y.share.textfield.bind(textarea)
+        textarea.value = localStorage[room];
+        y.share.textfield.bind(textarea);
+        y.share.textfield.observe(e => {
+            localStorage[room] = textarea.value;
+        })
     });
 }));
