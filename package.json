@@ -1,0 +1,38 @@
+{
+  "name": "ipfs-chatroom",
+  "version": "0.0.1",
+  "description": "A simple webapp to be hosted on CDN",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "prebuild": "mkdir -p dist",
+    "build": "npm-run-all -p build:*",
+    "build:ts": "browserify src/main.ts -p [ tsify --noImplicitAny ] > dist/bundle.js",
+    "build:html": "cp src/index.html dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beenotung/ipfs-chatroom.git"
+  },
+  "keywords": [
+    "ipfs",
+    "p2p",
+    "chatroom",
+    "webapp"
+  ],
+  "author": "Beeno Tung",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/beenotung/ipfs-chatroom/issues"
+  },
+  "homepage": "https://github.com/beenotung/ipfs-chatroom#readme",
+  "dependencies": {
+    "ipfs": "^0.26.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "npm-run-all": "^4.1.1",
+    "tsify": "^3.0.3",
+    "typescript": "^2.5.2"
+  }
+}
