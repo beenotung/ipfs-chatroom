@@ -1,6 +1,6 @@
-node_modules/
-dist/
+.idea/
 key.pem
 cert.pem
+dist/
 bower_components/
 *.swp

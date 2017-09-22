@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "commonjs",
+    "skipLibCheck": true
+  },
+  "files": [
+    "src/main.ts"
+  ]
+}

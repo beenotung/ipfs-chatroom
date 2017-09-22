@@ -1,0 +1,26 @@
+{
+  "name": "ipfs-chatroom",
+  "description": "A simple webapp to be hosted on CDN",
+  "main": "dist/bundle.js",
+  "authors": [
+    "Beeno Tung"
+  ],
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "ipfs",
+    "p2p",
+    "chatroom",
+    "webapp"
+  ],
+  "homepage": "https://github.com/beenotung/ipfs-chatroom",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "y-memory": "^8.0.9"
+  }
+}
