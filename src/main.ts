@@ -69,6 +69,13 @@ const ipfs = new IPFS({
     , EXPERIMENTAL: {
         pubsub: true
     }
+    , config: {
+        Addresses: {
+            Swarm: [
+                "/dns4/star-signal.cloud.ipfs.team/wss/p2p-webrtc-star"
+            ]
+        }
+    }
 });
 log("waiting IPFS connection");
 ipfs.once("ready", () => ipfs.id((err, info) => {
